@@ -7,7 +7,7 @@ The Last Plugin is a unique WordPress plugin designed to simplify your website e
 - **WordPress Simplification:** Replaces your WordPress site with a static HTML page.
 - **Site Optimization:** Provides a clean slate for optimized performance.
 - **Irreversible Action:** Deletes WordPress files permanently upon activation.
-- 
+  
 ## How It Works
 - **Plugin Activation:** Upon activation, the plugin deletes all WordPress files and folders.
 - **HTML Page Generation:** Replaces your site with a simple HTML page for optimized performance.
